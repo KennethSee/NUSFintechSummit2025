@@ -2,205 +2,221 @@
 pragma solidity ^0.8.0;
 
 contract Countries {
+
+    struct Country {
+        string name;
+        string isoCode;
+    }
+
     // Mapping of country names to ISO codes
     mapping(string => string) public countryToISO;
 
+    // List of valid country ISO codes
+    string[] public countryISOCodes;
+
     constructor() {
-        // Initialize mapping with country names and their ISO codes
-        countryToISO["Afghanistan"] = "AF";
-        countryToISO["Albania"] = "AL";
-        countryToISO["Algeria"] = "DZ";
-        countryToISO["Andorra"] = "AD";
-        countryToISO["Angola"] = "AO";
-        countryToISO["Antigua and Barbuda"] = "AG";
-        countryToISO["Argentina"] = "AR";
-        countryToISO["Armenia"] = "AM";
-        countryToISO["Australia"] = "AU";
-        countryToISO["Austria"] = "AT";
-        countryToISO["Azerbaijan"] = "AZ";
-        countryToISO["Bahamas"] = "BS";
-        countryToISO["Bahrain"] = "BH";
-        countryToISO["Bangladesh"] = "BD";
-        countryToISO["Barbados"] = "BB";
-        countryToISO["Belarus"] = "BY";
-        countryToISO["Belgium"] = "BE";
-        countryToISO["Belize"] = "BZ";
-        countryToISO["Benin"] = "BJ";
-        countryToISO["Bhutan"] = "BT";
-        countryToISO["Bolivia"] = "BO";
-        countryToISO["Bosnia and Herzegovina"] = "BA";
-        countryToISO["Botswana"] = "BW";
-        countryToISO["Brazil"] = "BR";
-        countryToISO["Brunei"] = "BN";
-        countryToISO["Bulgaria"] = "BG";
-        countryToISO["Burkina Faso"] = "BF";
-        countryToISO["Burundi"] = "BI";
-        countryToISO["Cambodia"] = "KH";
-        countryToISO["Cameroon"] = "CM";
-        countryToISO["Canada"] = "CA";
-        countryToISO["Cape Verde"] = "CV";
-        countryToISO["Central African Republic"] = "CF";
-        countryToISO["Chad"] = "TD";
-        countryToISO["Chile"] = "CL";
-        countryToISO["China"] = "CN";
-        countryToISO["Colombia"] = "CO";
-        countryToISO["Comoros"] = "KM";
-        countryToISO["Congo (Congo-Brazzaville)"] = "CG";
-        countryToISO["Congo (DRC)"] = "CD";
-        countryToISO["Costa Rica"] = "CR";
-        countryToISO["Croatia"] = "HR";
-        countryToISO["Cuba"] = "CU";
-        countryToISO["Cyprus"] = "CY";
-        countryToISO["Czechia"] = "CZ";
-        countryToISO["Denmark"] = "DK";
-        countryToISO["Djibouti"] = "DJ";
-        countryToISO["Dominica"] = "DM";
-        countryToISO["Dominican Republic"] = "DO";
-        countryToISO["Ecuador"] = "EC";
-        countryToISO["Egypt"] = "EG";
-        countryToISO["El Salvador"] = "SV";
-        countryToISO["Equatorial Guinea"] = "GQ";
-        countryToISO["Eritrea"] = "ER";
-        countryToISO["Estonia"] = "EE";
-        countryToISO["Eswatini"] = "SZ";
-        countryToISO["Ethiopia"] = "ET";
-        countryToISO["Fiji"] = "FJ";
-        countryToISO["Finland"] = "FI";
-        countryToISO["France"] = "FR";
-        countryToISO["Gabon"] = "GA";
-        countryToISO["Gambia"] = "GM";
-        countryToISO["Georgia"] = "GE";
-        countryToISO["Germany"] = "DE";
-        countryToISO["Ghana"] = "GH";
-        countryToISO["Greece"] = "GR";
-        countryToISO["Grenada"] = "GD";
-        countryToISO["Guatemala"] = "GT";
-        countryToISO["Guinea"] = "GN";
-        countryToISO["Guinea-Bissau"] = "GW";
-        countryToISO["Guyana"] = "GY";
-        countryToISO["Haiti"] = "HT";
-        countryToISO["Honduras"] = "HN";
-        countryToISO["Hungary"] = "HU";
-        countryToISO["Iceland"] = "IS";
-        countryToISO["India"] = "IN";
-        countryToISO["Indonesia"] = "ID";
-        countryToISO["Iran"] = "IR";
-        countryToISO["Iraq"] = "IQ";
-        countryToISO["Ireland"] = "IE";
-        countryToISO["Israel"] = "IL";
-        countryToISO["Italy"] = "IT";
-        countryToISO["Jamaica"] = "JM";
-        countryToISO["Japan"] = "JP";
-        countryToISO["Jordan"] = "JO";
-        countryToISO["Kazakhstan"] = "KZ";
-        countryToISO["Kenya"] = "KE";
-        countryToISO["Kiribati"] = "KI";
-        countryToISO["Kuwait"] = "KW";
-        countryToISO["Kyrgyzstan"] = "KG";
-        countryToISO["Laos"] = "LA";
-        countryToISO["Latvia"] = "LV";
-        countryToISO["Lebanon"] = "LB";
-        countryToISO["Lesotho"] = "LS";
-        countryToISO["Liberia"] = "LR";
-        countryToISO["Libya"] = "LY";
-        countryToISO["Liechtenstein"] = "LI";
-        countryToISO["Lithuania"] = "LT";
-        countryToISO["Luxembourg"] = "LU";
-        countryToISO["Madagascar"] = "MG";
-        countryToISO["Malawi"] = "MW";
-        countryToISO["Malaysia"] = "MY";
-        countryToISO["Maldives"] = "MV";
-        countryToISO["Mali"] = "ML";
-        countryToISO["Malta"] = "MT";
-        countryToISO["Marshall Islands"] = "MH";
-        countryToISO["Mauritania"] = "MR";
-        countryToISO["Mauritius"] = "MU";
-        countryToISO["Mexico"] = "MX";
-        countryToISO["Micronesia"] = "FM";
-        countryToISO["Moldova"] = "MD";
-        countryToISO["Monaco"] = "MC";
-        countryToISO["Mongolia"] = "MN";
-        countryToISO["Montenegro"] = "ME";
-        countryToISO["Morocco"] = "MA";
-        countryToISO["Mozambique"] = "MZ";
-        countryToISO["Myanmar"] = "MM";
-        countryToISO["Namibia"] = "NA";
-        countryToISO["Nauru"] = "NR";
-        countryToISO["Nepal"] = "NP";
-        countryToISO["Netherlands"] = "NL";
-        countryToISO["New Zealand"] = "NZ";
-        countryToISO["Nicaragua"] = "NI";
-        countryToISO["Niger"] = "NE";
-        countryToISO["Nigeria"] = "NG";
-        countryToISO["North Korea"] = "KP";
-        countryToISO["North Macedonia"] = "MK";
-        countryToISO["Norway"] = "NO";
-        countryToISO["Oman"] = "OM";
-        countryToISO["Pakistan"] = "PK";
-        countryToISO["Palau"] = "PW";
-        countryToISO["Panama"] = "PA";
-        countryToISO["Papua New Guinea"] = "PG";
-        countryToISO["Paraguay"] = "PY";
-        countryToISO["Peru"] = "PE";
-        countryToISO["Philippines"] = "PH";
-        countryToISO["Poland"] = "PL";
-        countryToISO["Portugal"] = "PT";
-        countryToISO["Qatar"] = "QA";
-        countryToISO["Romania"] = "RO";
-        countryToISO["Russia"] = "RU";
-        countryToISO["Rwanda"] = "RW";
-        countryToISO["Saint Kitts and Nevis"] = "KN";
-        countryToISO["Saint Lucia"] = "LC";
-        countryToISO["Saint Vincent and the Grenadines"] = "VC";
-        countryToISO["Samoa"] = "WS";
-        countryToISO["San Marino"] = "SM";
-        countryToISO["Sao Tome and Principe"] = "ST";
-        countryToISO["Saudi Arabia"] = "SA";
-        countryToISO["Senegal"] = "SN";
-        countryToISO["Serbia"] = "RS";
-        countryToISO["Seychelles"] = "SC";
-        countryToISO["Sierra Leone"] = "SL";
-        countryToISO["Singapore"] = "SG";
-        countryToISO["Slovakia"] = "SK";
-        countryToISO["Slovenia"] = "SI";
-        countryToISO["Solomon Islands"] = "SB";
-        countryToISO["Somalia"] = "SO";
-        countryToISO["South Africa"] = "ZA";
-        countryToISO["South Korea"] = "KR";
-        countryToISO["South Sudan"] = "SS";
-        countryToISO["Spain"] = "ES";
-        countryToISO["Sri Lanka"] = "LK";
-        countryToISO["Sudan"] = "SD";
-        countryToISO["Suriname"] = "SR";
-        countryToISO["Sweden"] = "SE";
-        countryToISO["Switzerland"] = "CH";
-        countryToISO["Syria"] = "SY";
-        countryToISO["Taiwan"] = "TW";
-        countryToISO["Tajikistan"] = "TJ";
-        countryToISO["Tanzania"] = "TZ";
-        countryToISO["Thailand"] = "TH";
-        countryToISO["Timor-Leste"] = "TL";
-        countryToISO["Togo"] = "TG";
-        countryToISO["Tonga"] = "TO";
-        countryToISO["Trinidad and Tobago"] = "TT";
-        countryToISO["Tunisia"] = "TN";
-        countryToISO["Turkey"] = "TR";
-        countryToISO["Turkmenistan"] = "TM";
-        countryToISO["Tuvalu"] = "TV";
-        countryToISO["Uganda"] = "UG";
-        countryToISO["Ukraine"] = "UA";
-        countryToISO["United Arab Emirates"] = "AE";
-        countryToISO["United Kingdom"] = "GB";
-        countryToISO["United States"] = "US";
-        countryToISO["Uruguay"] = "UY";
-        countryToISO["Uzbekistan"] = "UZ";
-        countryToISO["Vanuatu"] = "VU";
-        countryToISO["Vatican City"] = "VA";
-        countryToISO["Venezuela"] = "VE";
-        countryToISO["Vietnam"] = "VN";
-        countryToISO["Yemen"] = "YE";
-        countryToISO["Zambia"] = "ZM";
-        countryToISO["Zimbabwe"] = "ZW";
+        Country[194] memory countries = [
+            Country("Afghanistan", "AF"),
+            Country("Albania", "AL"),
+            Country("Algeria", "DZ"),
+            Country("Andorra", "AD"),
+            Country("Angola", "AO"),
+            Country("Antigua and Barbuda", "AG"),
+            Country("Argentina", "AR"),
+            Country("Armenia", "AM"),
+            Country("Australia", "AU"),
+            Country("Austria", "AT"),
+            Country("Azerbaijan", "AZ"),
+            Country("Bahamas", "BS"),
+            Country("Bahrain", "BH"),
+            Country("Bangladesh", "BD"),
+            Country("Barbados", "BB"),
+            Country("Belarus", "BY"),
+            Country("Belgium", "BE"),
+            Country("Belize", "BZ"),
+            Country("Benin", "BJ"),
+            Country("Bhutan", "BT"),
+            Country("Bolivia", "BO"),
+            Country("Bosnia and Herzegovina", "BA"),
+            Country("Botswana", "BW"),
+            Country("Brazil", "BR"),
+            Country("Brunei", "BN"),
+            Country("Bulgaria", "BG"),
+            Country("Burkina Faso", "BF"),
+            Country("Burundi", "BI"),
+            Country("Cabo Verde", "CV"),
+            Country("Cambodia", "KH"),
+            Country("Cameroon", "CM"),
+            Country("Canada", "CA"),
+            Country("Central African Republic", "CF"),
+            Country("Chad", "TD"),
+            Country("Chile", "CL"),
+            Country("China", "CN"),
+            Country("Colombia", "CO"),
+            Country("Comoros", "KM"),
+            Country("Congo (Congo-Brazzaville)", "CG"),
+            Country("Congo (DRC)", "CD"),
+            Country("Costa Rica", "CR"),
+            Country("Croatia", "HR"),
+            Country("Cuba", "CU"),
+            Country("Cyprus", "CY"),
+            Country("Czechia", "CZ"),
+            Country("Denmark", "DK"),
+            Country("Djibouti", "DJ"),
+            Country("Dominica", "DM"),
+            Country("Dominican Republic", "DO"),
+            Country("Ecuador", "EC"),
+            Country("Egypt", "EG"),
+            Country("El Salvador", "SV"),
+            Country("Equatorial Guinea", "GQ"),
+            Country("Eritrea", "ER"),
+            Country("Estonia", "EE"),
+            Country("Eswatini", "SZ"),
+            Country("Ethiopia", "ET"),
+            Country("Fiji", "FJ"),
+            Country("Finland", "FI"),
+            Country("France", "FR"),
+            Country("Gabon", "GA"),
+            Country("Gambia", "GM"),
+            Country("Georgia", "GE"),
+            Country("Germany", "DE"),
+            Country("Ghana", "GH"),
+            Country("Greece", "GR"),
+            Country("Grenada", "GD"),
+            Country("Guatemala", "GT"),
+            Country("Guinea", "GN"),
+            Country("Guinea-Bissau", "GW"),
+            Country("Guyana", "GY"),
+            Country("Haiti", "HT"),
+            Country("Honduras", "HN"),
+            Country("Hungary", "HU"),
+            Country("Iceland", "IS"),
+            Country("India", "IN"),
+            Country("Indonesia", "ID"),
+            Country("Iran", "IR"),
+            Country("Iraq", "IQ"),
+            Country("Ireland", "IE"),
+            Country("Israel", "IL"),
+            Country("Italy", "IT"),
+            Country("Jamaica", "JM"),
+            Country("Japan", "JP"),
+            Country("Jordan", "JO"),
+            Country("Kazakhstan", "KZ"),
+            Country("Kenya", "KE"),
+            Country("Kiribati", "KI"),
+            Country("Kuwait", "KW"),
+            Country("Kyrgyzstan", "KG"),
+            Country("Laos", "LA"),
+            Country("Latvia", "LV"),
+            Country("Lebanon", "LB"),
+            Country("Lesotho", "LS"),
+            Country("Liberia", "LR"),
+            Country("Libya", "LY"),
+            Country("Liechtenstein", "LI"),
+            Country("Lithuania", "LT"),
+            Country("Luxembourg", "LU"),
+            Country("Madagascar", "MG"),
+            Country("Malawi", "MW"),
+            Country("Malaysia", "MY"),
+            Country("Maldives", "MV"),
+            Country("Mali", "ML"),
+            Country("Malta", "MT"),
+            Country("Marshall Islands", "MH"),
+            Country("Mauritania", "MR"),
+            Country("Mauritius", "MU"),
+            Country("Mexico", "MX"),
+            Country("Micronesia", "FM"),
+            Country("Moldova", "MD"),
+            Country("Monaco", "MC"),
+            Country("Mongolia", "MN"),
+            Country("Montenegro", "ME"),
+            Country("Morocco", "MA"),
+            Country("Mozambique", "MZ"),
+            Country("Myanmar", "MM"),
+            Country("Namibia", "NA"),
+            Country("Nauru", "NR"),
+            Country("Nepal", "NP"),
+            Country("Netherlands", "NL"),
+            Country("New Zealand", "NZ"),
+            Country("Nicaragua", "NI"),
+            Country("Niger", "NE"),
+            Country("Nigeria", "NG"),
+            Country("North Korea", "KP"),
+            Country("North Macedonia", "MK"),
+            Country("Norway", "NO"),
+            Country("Oman", "OM"),
+            Country("Pakistan", "PK"),
+            Country("Palau", "PW"),
+            Country("Palestine", "PS"),
+            Country("Panama", "PA"),
+            Country("Papua New Guinea", "PG"),
+            Country("Paraguay", "PY"),
+            Country("Peru", "PE"),
+            Country("Philippines", "PH"),
+            Country("Poland", "PL"),
+            Country("Portugal", "PT"),
+            Country("Qatar", "QA"),
+            Country("Romania", "RO"),
+            Country("Russia", "RU"),
+            Country("Rwanda", "RW"),
+            Country("Saint Kitts and Nevis", "KN"),
+            Country("Saint Lucia", "LC"),
+            Country("Saint Vincent and the Grenadines", "VC"),
+            Country("Samoa", "WS"),
+            Country("San Marino", "SM"),
+            Country("Sao Tome and Principe", "ST"),
+            Country("Saudi Arabia", "SA"),
+            Country("Senegal", "SN"),
+            Country("Serbia", "RS"),
+            Country("Seychelles", "SC"),
+            Country("Sierra Leone", "SL"),
+            Country("Singapore", "SG"),
+            Country("Slovakia", "SK"),
+            Country("Slovenia", "SI"),
+            Country("Solomon Islands", "SB"),
+            Country("Somalia", "SO"),
+            Country("South Africa", "ZA"),
+            Country("South Korea", "KR"),
+            Country("South Sudan", "SS"),
+            Country("Spain", "ES"),
+            Country("Sri Lanka", "LK"),
+            Country("Sudan", "SD"),
+            Country("Suriname", "SR"),
+            Country("Sweden", "SE"),
+            Country("Switzerland", "CH"),
+            Country("Syria", "SY"),
+            Country("Taiwan", "TW"),
+            Country("Tajikistan", "TJ"),
+            Country("Tanzania", "TZ"),
+            Country("Thailand", "TH"),
+            Country("Timor-Leste", "TL"),
+            Country("Togo", "TG"),
+            Country("Trinidad and Tobago", "TT"),
+            Country("Tunisia", "TN"),
+            Country("Turkey", "TR"),
+            Country("Turkmenistan", "TM"),
+            Country("Tuvalu", "TV"),
+            Country("Uganda", "UG"),
+            Country("Ukraine", "UA"),
+            Country("United Arab Emirates", "AE"),
+            Country("United Kingdom", "GB"),
+            Country("United States", "US"),
+            Country("Uruguay", "UY"),
+            Country("Uzbekistan", "UZ"),
+            Country("Vanuatu", "VU"),
+            Country("Vatican City", "VA"),
+            Country("Venezuela", "VE"),
+            Country("Vietnam", "VN"),
+            Country("Yemen", "YE"),
+            Country("Zambia", "ZM"),
+            Country("Zimbabwe", "ZW")
+        ];
+
+        for (uint i = 0; i < 188; i++) {
+            countryToISO[countries[i].name] = countries[i].isoCode;
+            countryISOCodes.push(countries[i].isoCode);
+        }
+        
     }
 
     /**
@@ -210,5 +226,15 @@ contract Countries {
      */
     function getISOCode(string memory countryName) public view returns (string memory) {
         return countryToISO[countryName];
+    }
+
+    function isValidISOCode(string memory countryISOCode) public view returns (bool) {
+        for (uint i = 0; i < countryISOCodes.length; i++) {
+            if (keccak256(abi.encodePacked(countryISOCodes[i])) == keccak256(abi.encodePacked(countryISOCode))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

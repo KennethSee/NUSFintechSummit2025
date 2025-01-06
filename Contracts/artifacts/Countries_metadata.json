@@ -13,6 +13,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "countryISOCodes",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "string",
 						"name": "",
 						"type": "string"
@@ -43,6 +62,25 @@
 						"internalType": "string",
 						"name": "",
 						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "countryISOCode",
+						"type": "string"
+					}
+				],
+				"name": "isValidISOCode",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -87,11 +125,11 @@
 	},
 	"sources": {
 		"Contracts/Countries.sol": {
-			"keccak256": "0x9babd87bbb5a3414ec59329ec6f0795996987155074b20b0351d8f83509a4bbc",
+			"keccak256": "0x5819907f34a889ebdca95b568cc1c2faa251a2b5e32f903ef11bd54642256227",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5c480a5c87325ef6486cf7e8b153475bb4da3e8964abdcdd9a025da127f5f911",
-				"dweb:/ipfs/QmWZfoVZjdUFmuVhYMgvhr6PBRZzF5Du5hFm2JFME7kTVF"
+				"bzz-raw://42f4ef46e33e1e7c29084ea60a4e99dac4b51498e6d2f498645408217e63b2d7",
+				"dweb:/ipfs/QmURddg78MuV5wa7TwVS21CWmxycJmU6KzchUkDUZcepD1"
 			]
 		}
 	},

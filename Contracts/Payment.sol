@@ -3,6 +3,10 @@ import "./Countries.sol";
 
 pragma solidity ^0.8.0;
 
+interface IPayment {
+    function pay() external payable;
+}
+
 contract Payment {
     // Payer and recipient details
     address public payer;

@@ -1,0 +1,196 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_countriesContract",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "payer",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "recipient",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "status",
+						"type": "string"
+					}
+				],
+				"name": "PaymentStaged",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "clearCumulativeTxns",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "countriesContract",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "executeStagedPayments",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_payer",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_recipient",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_payerCountry",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_recipientCountry",
+						"type": "string"
+					}
+				],
+				"name": "stagePayment",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"name": "statusMapping",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Contracts/PaymentProcessor.sol": "PaymentProcessor"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Contracts/Countries.sol": {
+			"keccak256": "0x63d31cd28e84d0f7b5e1fe21b43f60273bae3378c6a0baeec52f5c194a6d4968",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d95ea259bcf8f6fec5415879fe37b558dde19cf9150657685e8c9dde22c99d52",
+				"dweb:/ipfs/QmSJTyf32Kv32fgS3RDZgwj8kDLGR2kPuNYRR5YorXeeCg"
+			]
+		},
+		"Contracts/Payment.sol": {
+			"keccak256": "0x6849a50a6579f5c000395bcdbab473d2645d4d41827c1a3c89b352d88587dd96",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d2c5bea0b2ff6fa2184b1fd8030c8a397ce8cd7188f21931c76ee92f74b0d98a",
+				"dweb:/ipfs/Qmae1d3pjiF9MYbxBzEuFfdixQsDRvcGFdvUFzRfC6oRAb"
+			]
+		},
+		"Contracts/PaymentProcessor.sol": {
+			"keccak256": "0x6be571289605939d8ecfe2394b1882252635e505df50810ec66048487cf7fa8c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c03715c26543c01736f8ad2c3167d4fcc44f6fd0431e6e702b12ecdee750208d",
+				"dweb:/ipfs/QmZ4PqJBHEZ8bwyFuRPJ1UVeqaceFCUSN21Mjht5GgSdYD"
+			]
+		}
+	},
+	"version": 1
+}

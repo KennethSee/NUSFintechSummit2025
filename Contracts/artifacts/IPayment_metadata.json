@@ -1,0 +1,61 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "pay",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Contracts/Payment.sol": "IPayment"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Contracts/Countries.sol": {
+			"keccak256": "0x63d31cd28e84d0f7b5e1fe21b43f60273bae3378c6a0baeec52f5c194a6d4968",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d95ea259bcf8f6fec5415879fe37b558dde19cf9150657685e8c9dde22c99d52",
+				"dweb:/ipfs/QmSJTyf32Kv32fgS3RDZgwj8kDLGR2kPuNYRR5YorXeeCg"
+			]
+		},
+		"Contracts/Payment.sol": {
+			"keccak256": "0x6849a50a6579f5c000395bcdbab473d2645d4d41827c1a3c89b352d88587dd96",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d2c5bea0b2ff6fa2184b1fd8030c8a397ce8cd7188f21931c76ee92f74b0d98a",
+				"dweb:/ipfs/Qmae1d3pjiF9MYbxBzEuFfdixQsDRvcGFdvUFzRfC6oRAb"
+			]
+		}
+	},
+	"version": 1
+}

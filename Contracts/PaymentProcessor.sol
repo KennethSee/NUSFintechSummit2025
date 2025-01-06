@@ -12,6 +12,7 @@ contract PaymentProcessor {
     address[] private addressesWithTxns;
     address[] private stagedPayments;
     address[] private paymentsToProcess;
+    address[] private paymentsToCheck;
     mapping(address => uint256) private cumulativeTxnVolMapping; // track cumulative transactions for each user
     mapping(address => uint8) private paymentStatusMapping; // track status of staged payment contracts
     mapping(uint8 => string) public statusMapping;
@@ -100,5 +101,22 @@ contract PaymentProcessor {
             delete cumulativeTxnVolMapping[addressesWithTxns[i]];
         }
         delete addressesWithTxns;
+    }
+
+    function getPaymentsRequiringManualCheck() public ownerOnly returns(address[] memory){
+        for (uint256 i = 0; i < stagedPayments.length; i++) {
+            address stagedPayment = stagedPayments[i];
+            if (paymentStatusMapping[stagedPayment] == 1) {
+                paymentsToCheck.push(stagedPayment);
+            }
+        }
+
+        address[] memory returnArr = new address[](paymentsToCheck.length);
+        for (uint256 j = 0; j < paymentsToCheck.length; j++) {
+            returnArr[j] = paymentsToCheck[j];
+        }
+        delete paymentsToCheck;
+
+        return returnArr;
     }
 }

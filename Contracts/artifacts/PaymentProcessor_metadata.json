@@ -100,6 +100,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "getPaymentsRequiringManualCheck",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
@@ -208,11 +221,11 @@
 			]
 		},
 		"Contracts/PaymentProcessor.sol": {
-			"keccak256": "0xeca1640a843b5445d276d1d3072f89350e9bdd1206c620b3ae25b34449d0ce23",
+			"keccak256": "0xaad46333803bd6659518bd61fde87b509316fe3b6c337bc8d8cf50ce4ae45696",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3d3a9c31ad4240a1a6129cbb779924d7a30a1d2289dd3cd89df14b6406d16804",
-				"dweb:/ipfs/QmXPv2uNEsUMeHoqvNcAvoEqquWPBr5fbJgFS5B975GbNK"
+				"bzz-raw://c6ae65fc897d0bcad03fafdeb6236f8a9c571db9211332d26e2cb8fc3e7ec104",
+				"dweb:/ipfs/QmPhQ1ADqgNuyugtcCG96FeUtpaDqnDkKrCkNfX6bnMA5U"
 			]
 		},
 		"Contracts/SimpleERC20.sol": {

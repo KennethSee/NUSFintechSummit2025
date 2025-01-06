@@ -9,7 +9,7 @@
 				"inputs": [],
 				"name": "pay",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -49,11 +49,19 @@
 			]
 		},
 		"Contracts/Payment.sol": {
-			"keccak256": "0x6849a50a6579f5c000395bcdbab473d2645d4d41827c1a3c89b352d88587dd96",
+			"keccak256": "0xdf305d3c5178e80663435eb9abccddbc8d1ac2b1f57bc6d27088a787ef714647",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d2c5bea0b2ff6fa2184b1fd8030c8a397ce8cd7188f21931c76ee92f74b0d98a",
-				"dweb:/ipfs/Qmae1d3pjiF9MYbxBzEuFfdixQsDRvcGFdvUFzRfC6oRAb"
+				"bzz-raw://c38a69c68d2a9ff82ee5ecad2e97a2af2e7b1efa0d1ffd62bee55b2f71e3f303",
+				"dweb:/ipfs/QmUifb6RzndSMba1XRcJCzVpTwuyYEEhcUconkuxx5WLW1"
+			]
+		},
+		"Contracts/SimpleERC20.sol": {
+			"keccak256": "0x29f51a426d6a5ce7cf1bb63f368a9266532cc00d1ff31fffe794e1817a60e2e4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7aec1a2821e0c0900b7324c14814326c57875ce3fb7d3c7ed0f40f2fac631f8f",
+				"dweb:/ipfs/QmPm7AEMdeRBbMnuyXCdTmQYJ6SNvsBrjFXf9LH3rcBokz"
 			]
 		}
 	},

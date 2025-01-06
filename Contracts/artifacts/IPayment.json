@@ -57,7 +57,7 @@
 			"inputs": [],
 			"name": "pay",
 			"outputs": [],
-			"stateMutability": "payable",
+			"stateMutability": "nonpayable",
 			"type": "function"
 		}
 	]

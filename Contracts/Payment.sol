@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: MIT
 import "./Countries.sol";
+import "./SimpleERC20.sol";
 
 pragma solidity ^0.8.0;
 
 interface IPayment {
-    function pay() external payable;
+    function pay() external;
 }
 
 contract Payment {
@@ -17,12 +18,15 @@ contract Payment {
     string public payerCountry;
     string public recipientCountry;
 
-    // Address of the Countries contract
+    // Address of contracts
     address public countriesContract;
+    address public ERC20Contract;
 
-    constructor(address _payer, address _recipient, uint256 _amount, string memory _payerCountry, string memory _recipientCountry, address _countriesContract) {
+    constructor(address _payer, address _recipient, uint256 _amount, string memory _payerCountry, string memory _recipientCountry, address _countriesContract, address _ERC20Contract) {
         require(_countriesContract != address(0), "Invalid Countries contract address");
         countriesContract = _countriesContract;
+        require(_ERC20Contract != address(0), "Invalid ERC20 contract address");
+        ERC20Contract = _ERC20Contract;
 
         // check that countries are valid ISO codes
         ICountries countries = ICountries(countriesContract);
@@ -36,14 +40,12 @@ contract Payment {
         recipientCountry = _recipientCountry;
     }
 
-    function pay() external payable {
-        require(msg.sender == payer, "Only the payer can initiate payment");
-        require(msg.value == amount, "Incorrect payment amount");
+    function pay() external {
+        ISimpleERC20 erc20 = ISimpleERC20(ERC20Contract);
+        require(erc20.checkBalance(payer) >= amount, "Insufficient balance");
         require(recipient != address(0), "Invalid recipient address");
 
-        // TO-DO: Compliance checks will go here
-
-        payable(recipient).transfer(msg.value);
+        erc20.transferFrom(payer, recipient, amount);
     }
 
 }

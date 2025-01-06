@@ -7,19 +7,23 @@ pragma solidity ^0.8.0;
 contract PaymentProcessor {
 
     address public countriesContract;
+    address public ERC20Contract;
     address public owner;
     address[] private addressesWithTxns;
     address[] private stagedPayments;
+    address[] private paymentsToProcess;
     mapping(address => uint256) private cumulativeTxnVolMapping; // track cumulative transactions for each user
     mapping(address => uint8) private paymentStatusMapping; // track status of staged payment contracts
     mapping(uint8 => string) public statusMapping;
 
     // Event to emit payment details
-    event PaymentStaged(address indexed payer, address indexed recipient, uint256 amount, string status);
+    event PaymentStaged(address indexed payer, address indexed recipient, uint256 amount, string status, address indexed paymentContract);
 
-    constructor(address _countriesContract) {
+    constructor(address _countriesContract, address _ERC20Contract) {
         require(_countriesContract != address(0), "Invalid Countries contract address");
         countriesContract = _countriesContract;
+        require(_ERC20Contract != address(0), "Invalid ERC20 contract address");
+        ERC20Contract = _ERC20Contract;
 
         // assing status mapping
         statusMapping[0] = "Failed";
@@ -42,7 +46,7 @@ contract PaymentProcessor {
         require(countries.isValidISOCode(_recipientCountry), "Invalid recipient country ISO code");
 
         // create payment contract
-        Payment payment = new Payment(_payer, _recipient, _amount, _payerCountry, _recipientCountry, countriesContract);
+        Payment payment = new Payment(_payer, _recipient, _amount, _payerCountry, _recipientCountry, countriesContract, ERC20Contract);
 
         // run compliance check
         // TO-DO
@@ -60,11 +64,35 @@ contract PaymentProcessor {
         cumulativeTxnVolMapping[_payer] += _amount;
 
         // Emit payment details
-        emit PaymentStaged(_payer, _recipient, _amount, statusMapping[paymentStatus]);
+        emit PaymentStaged(_payer, _recipient, _amount, statusMapping[paymentStatus], paymentAddress);
     }
 
     function executeStagedPayments() public ownerOnly {
+        // identify staged payments which are ready for processing
+        for (uint256 i = 0; i < stagedPayments.length; i++) {
+            address paymentAddress = stagedPayments[i];
+            uint8 statusCode = paymentStatusMapping[paymentAddress];
+            if (statusCode == 2) {
+                paymentsToProcess.push(paymentAddress);
+            }
+        }
 
+        // execute payments
+        for (uint256 j = 0; j < paymentsToProcess.length; j++) {
+            address processingPaymentAddress = paymentsToProcess[j];
+            delete paymentStatusMapping[processingPaymentAddress];
+            for (uint256 k = 0; k < stagedPayments.length; k++) {
+                if (stagedPayments[k] == processingPaymentAddress) {
+                    // swap and pop
+                    stagedPayments[k] = stagedPayments[stagedPayments.length - 1];
+                    stagedPayments.pop();
+                }
+            }
+
+            IPayment payment = IPayment(processingPaymentAddress);
+            payment.pay();
+        }
+        delete paymentsToProcess;
     }
 
     function clearCumulativeTxns() public ownerOnly {

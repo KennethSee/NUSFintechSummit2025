@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+interface ICountries {
+    function isValidISOCode(string memory _country) external view returns (bool);
+    function getISOCode(string memory _countryName) external view returns (string memory);
+}
+
 contract Countries {
 
     struct Country {
@@ -221,16 +226,16 @@ contract Countries {
 
     /**
      * @dev Retrieve the ISO code for a given country name.
-     * @param countryName The name of the country.
+     * @param _countryName The name of the country.
      * @return The ISO code of the country.
      */
-    function getISOCode(string memory countryName) public view returns (string memory) {
-        return countryToISO[countryName];
+    function getISOCode(string memory _countryName) public view returns (string memory) {
+        return countryToISO[_countryName];
     }
 
-    function isValidISOCode(string memory countryISOCode) public view returns (bool) {
+    function isValidISOCode(string memory _countryISOCode) public view returns (bool) {
         for (uint i = 0; i < countryISOCodes.length; i++) {
-            if (keccak256(abi.encodePacked(countryISOCodes[i])) == keccak256(abi.encodePacked(countryISOCode))) {
+            if (keccak256(abi.encodePacked(countryISOCodes[i])) == keccak256(abi.encodePacked(_countryISOCode))) {
                 return true;
             }
         }

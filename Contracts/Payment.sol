@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: MIT
+import "./Countries.sol";
+
 pragma solidity ^0.8.0;
 
 contract Payment {
@@ -11,37 +13,18 @@ contract Payment {
     string public payerCountry;
     string public recipientCountry;
 
-    // Mapping of valid ISO codes (example subset for demonstration)
-    mapping(string => bool) public validISO;
+    // Address of the Countries contract
+    address public countriesContract;
 
-    constructor() {
-        // Initialize a subset of valid ISO country codes (static list for demonstration)
-        validISO["US"] = true;
-        validISO["SG"] = true;
-        validISO["PH"] = true;
-        validISO["FR"] = true;
-        validISO["DE"] = true;
-    }
+    constructor(address _payer, address _recipient, uint256 _amount, string memory _payerCountry, string memory _recipientCountry, address _countriesContract) {
+        require(_countriesContract != address(0), "Invalid Countries contract address");
+        countriesContract = _countriesContract;
 
-    /**
-     * @dev Function to set up a payment.
-     * @param _payer The address of the payer.
-     * @param _recipient The address of the recipient.
-     * @param _amount The amount to be transferred.
-     * @param _payerCountry ISO country code of the payer.
-     * @param _recipientCountry ISO country code of the recipient.
-     */
-    function setPayment(
-        address _payer,
-        address _recipient,
-        uint256 _amount,
-        string memory _payerCountry,
-        string memory _recipientCountry
-    ) public {
-        require(validISO[_payerCountry], "Invalid ISO code for payer country");
-        require(validISO[_recipientCountry], "Invalid ISO code for recipient country");
-        require(_amount > 0, "Amount must be greater than 0");
-        
+        // check that countries are valid ISO codes
+        ICountries countries = ICountries(countriesContract);
+        require(countries.isValidISOCode(_payerCountry), "Invalid payer country ISO code");
+        require(countries.isValidISOCode(_recipientCountry), "Invalid recipient country ISO code");
+
         payer = _payer;
         recipient = _recipient;
         amount = _amount;
@@ -49,11 +32,14 @@ contract Payment {
         recipientCountry = _recipientCountry;
     }
 
-    /**
-     * @dev Function to execute payment (for demonstration purposes, no actual payment logic).
-     */
-    function executePayment() public view returns (string memory) {
-        require(msg.sender == payer, "Only the payer can execute the payment");
-        return "Payment executed successfully";
+    function pay() external payable {
+        require(msg.sender == payer, "Only the payer can initiate payment");
+        require(msg.value == amount, "Incorrect payment amount");
+        require(recipient != address(0), "Invalid recipient address");
+
+        // TO-DO: Compliance checks will go here
+
+        payable(recipient).transfer(msg.value);
     }
+
 }

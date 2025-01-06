@@ -6,49 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "countryISOCodes",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"name": "countryToISO",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -71,7 +28,7 @@
 				"inputs": [
 					{
 						"internalType": "string",
-						"name": "_countryISOCode",
+						"name": "_country",
 						"type": "string"
 					}
 				],
@@ -89,17 +46,7 @@
 		],
 		"devdoc": {
 			"kind": "dev",
-			"methods": {
-				"getISOCode(string)": {
-					"details": "Retrieve the ISO code for a given country name.",
-					"params": {
-						"_countryName": "The name of the country."
-					},
-					"returns": {
-						"_0": "The ISO code of the country."
-					}
-				}
-			},
+			"methods": {},
 			"version": 1
 		},
 		"userdoc": {
@@ -110,7 +57,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Contracts/Countries.sol": "Countries"
+			"Contracts/Countries.sol": "ICountries"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},

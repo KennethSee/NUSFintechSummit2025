@@ -1,0 +1,175 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_payer",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_recipient",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_payerCountry",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_recipientCountry",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_countriesContract",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "amount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "countriesContract",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pay",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "payer",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "payerCountry",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "recipient",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "recipientCountry",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Contracts/Payment.sol": "Payment"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Contracts/Countries.sol": {
+			"keccak256": "0x63d31cd28e84d0f7b5e1fe21b43f60273bae3378c6a0baeec52f5c194a6d4968",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d95ea259bcf8f6fec5415879fe37b558dde19cf9150657685e8c9dde22c99d52",
+				"dweb:/ipfs/QmSJTyf32Kv32fgS3RDZgwj8kDLGR2kPuNYRR5YorXeeCg"
+			]
+		},
+		"Contracts/Payment.sol": {
+			"keccak256": "0xa7a721a10bf0f4f2c064e4c7729e2433b03858ddfab08c138b2a048294b7f6de",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2b4bc5450480fb69a09dd21a4f3ff7cc8800330e3cf352e1f64a2f7e0cdb5f45",
+				"dweb:/ipfs/QmRuzuXcj4LRdy1V1nkZxD9H5mgkq3wgQ48VkcN5NiDW5E"
+			]
+		}
+	},
+	"version": 1
+}

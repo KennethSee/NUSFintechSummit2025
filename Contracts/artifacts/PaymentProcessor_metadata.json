@@ -16,6 +16,11 @@
 						"internalType": "address",
 						"name": "_ERC20Contract",
 						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_complianceContract",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -76,6 +81,19 @@
 				"name": "clearCumulativeTxns",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "complianceContract",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -204,6 +222,14 @@
 		"remappings": []
 	},
 	"sources": {
+		"Contracts/Compliance/AbstractCompliance.sol": {
+			"keccak256": "0x572493667473ec892b4f8a8f310a43343e527a1e2d13b278b3bb85cec44d33d8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9f6f3d973def72398547111a3e26d09878972cb82b3f3322cb93bcfe3d51d664",
+				"dweb:/ipfs/QmfBL9kh177PaBGp727qN1ErrAD7cQtQn928wkdXaqoeDb"
+			]
+		},
 		"Contracts/Countries.sol": {
 			"keccak256": "0x63d31cd28e84d0f7b5e1fe21b43f60273bae3378c6a0baeec52f5c194a6d4968",
 			"license": "MIT",
@@ -221,11 +247,11 @@
 			]
 		},
 		"Contracts/PaymentProcessor.sol": {
-			"keccak256": "0xaad46333803bd6659518bd61fde87b509316fe3b6c337bc8d8cf50ce4ae45696",
+			"keccak256": "0x57f2806be6b69e273d36104e86482ce77851f04f07d87bd20892a3ec8d4cdabe",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c6ae65fc897d0bcad03fafdeb6236f8a9c571db9211332d26e2cb8fc3e7ec104",
-				"dweb:/ipfs/QmPhQ1ADqgNuyugtcCG96FeUtpaDqnDkKrCkNfX6bnMA5U"
+				"bzz-raw://09eb3955f22b66cce2986ade00de36defbebcf10377b8e207d2d42f0e8088973",
+				"dweb:/ipfs/QmRB63MezNkPhQwyznTPLxuvzPj7sTf7MQ2yYo38aTgmYm"
 			]
 		},
 		"Contracts/SimpleERC20.sol": {

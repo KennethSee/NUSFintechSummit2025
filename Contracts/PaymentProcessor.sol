@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 import "./Countries.sol";
 import "./Payment.sol";
+import "./Compliance/AbstractCompliance.sol";
 
 pragma solidity ^0.8.0;
 
@@ -8,11 +9,11 @@ contract PaymentProcessor {
 
     address public countriesContract;
     address public ERC20Contract;
+    address public complianceContract;
     address public owner;
     address[] private addressesWithTxns;
     address[] private stagedPayments;
     address[] private paymentsToProcess;
-    address[] private paymentsToCheck;
     mapping(address => uint256) private cumulativeTxnVolMapping; // track cumulative transactions for each user
     mapping(address => uint8) private paymentStatusMapping; // track status of staged payment contracts
     mapping(uint8 => string) public statusMapping;
@@ -20,11 +21,13 @@ contract PaymentProcessor {
     // Event to emit payment details
     event PaymentStaged(address indexed payer, address indexed recipient, uint256 amount, string status, address indexed paymentContract);
 
-    constructor(address _countriesContract, address _ERC20Contract) {
+    constructor(address _countriesContract, address _ERC20Contract, address _complianceContract) {
         require(_countriesContract != address(0), "Invalid Countries contract address");
         countriesContract = _countriesContract;
         require(_ERC20Contract != address(0), "Invalid ERC20 contract address");
         ERC20Contract = _ERC20Contract;
+        require(_complianceContract != address(0), "Invalid Compliance contract address");
+        complianceContract = _complianceContract;
 
         // assing status mapping
         statusMapping[0] = "Failed";
@@ -50,8 +53,21 @@ contract PaymentProcessor {
         Payment payment = new Payment(_payer, _recipient, _amount, _payerCountry, _recipientCountry, countriesContract, ERC20Contract);
 
         // run compliance check
-        // TO-DO
-        uint8 paymentStatus = 2;
+        uint8 paymentStatus;
+        AbstractCompliance compliance = AbstractCompliance(complianceContract);
+        bool hardCheckPass = compliance.hardCheck(_payer, _recipient, _amount, _payerCountry, _recipientCountry, countriesContract);
+        bool softCheckPass = compliance.softCheck(_payer, _recipient, _amount, _payerCountry, _recipientCountry, countriesContract);
+
+        if (softCheckPass) {
+            paymentStatus = 2;
+        }
+        else {
+            paymentStatus = 1;
+        }
+
+        if (!hardCheckPass) {
+            paymentStatus = 0;
+        }
 
         // stage the payment
         address paymentAddress = address(payment);
@@ -103,20 +119,36 @@ contract PaymentProcessor {
         delete addressesWithTxns;
     }
 
-    function getPaymentsRequiringManualCheck() public ownerOnly returns(address[] memory){
+    function getPaymentsRequiringManualCheck() public view ownerOnly returns(address[] memory){
+        // Count the payments requiring manual checks
+        uint256 manualCheckCount = 0;
         for (uint256 i = 0; i < stagedPayments.length; i++) {
-            address stagedPayment = stagedPayments[i];
-            if (paymentStatusMapping[stagedPayment] == 1) {
-                paymentsToCheck.push(stagedPayment);
+            if (paymentStatusMapping[stagedPayments[i]] == 1) {
+                manualCheckCount++;
             }
         }
 
-        address[] memory returnArr = new address[](paymentsToCheck.length);
-        for (uint256 j = 0; j < paymentsToCheck.length; j++) {
-            returnArr[j] = paymentsToCheck[j];
+        // Create a memory array to store the addresses
+        address[] memory manualCheckPayments = new address[](manualCheckCount);
+        uint256 index = 0;
+        for (uint256 i = 0; i < stagedPayments.length; i++) {
+            if (paymentStatusMapping[stagedPayments[i]] == 1) {
+                manualCheckPayments[index] = stagedPayments[i];
+                index++;
+            }
         }
-        delete paymentsToCheck;
 
-        return returnArr;
+        return manualCheckPayments;
+    }
+
+    function manuallyClearPayment(address _paymentContractAddress) public ownerOnly {
+        require(paymentStatusMapping[_paymentContractAddress] == 1, "Payment must be in the 'Require Manual Check' status.");
+        paymentStatusMapping[_paymentContractAddress] = 2;
+    }
+
+    function getPaymentStatus(address _paymentContractAddress) public view ownerOnly returns(string memory) {
+        uint8 statusCode = paymentStatusMapping[_paymentContractAddress];
+        string memory status = statusMapping[statusCode];
+        return status;
     }
 }

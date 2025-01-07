@@ -1,0 +1,134 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_payer",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_recipient",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_payerCountry",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_recipientCountry",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_countriesContract",
+						"type": "address"
+					}
+				],
+				"name": "hardCheck",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_payer",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_recipient",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_payerCountry",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_recipientCountry",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_countriesContract",
+						"type": "address"
+					}
+				],
+				"name": "softCheck",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Contracts/Compliance/AbstractCompliance.sol": "AbstractCompliance"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Contracts/Compliance/AbstractCompliance.sol": {
+			"keccak256": "0x572493667473ec892b4f8a8f310a43343e527a1e2d13b278b3bb85cec44d33d8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9f6f3d973def72398547111a3e26d09878972cb82b3f3322cb93bcfe3d51d664",
+				"dweb:/ipfs/QmfBL9kh177PaBGp727qN1ErrAD7cQtQn928wkdXaqoeDb"
+			]
+		}
+	},
+	"version": 1
+}

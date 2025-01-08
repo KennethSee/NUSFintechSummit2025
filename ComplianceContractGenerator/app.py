@@ -21,6 +21,6 @@ if generate_button:
     else:
         # TO-DO: Modify code generation input
         compliance_contract_name = 'CompliancePlaceholderName'
-        compliance_contract_code = ComplianceCodeEngine(compliance_contract_name, ['IR', 'MR'], 1000).generate_contract()
+        compliance_contract_code = ComplianceCodeEngine(compliance_contract_name, ['IR', 'MR'], {'SG': 20000, 'US': 15000}).generate_contract()
         st.header('Compliance contract solidity code')
         st.code(compliance_contract_code, language='solidity')

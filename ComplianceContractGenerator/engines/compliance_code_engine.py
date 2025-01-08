@@ -1,9 +1,9 @@
-from typing import List
+from typing import List, Dict
 import textwrap
 
 class ComplianceCodeEngine:
 
-    def __init__(self, contract_name: str, excluded_countries: List[str], threshold: int = None):
+    def __init__(self, contract_name: str, excluded_countries: List[str], threshold: Dict[str, int] = {}):
         self.contract_name = contract_name
         self.excluded_countries = excluded_countries
         self.threshold = threshold
@@ -67,18 +67,17 @@ function softCheck(
         return soft_check_function
     
     def _generate_hard_check_func(self):
-        # Determine comparison string
-        if self.threshold is None:
-            threshold_logic = ""
-        else:
-            threshold_logic = """
+        # Generate threshold checks for each country
+        threshold_checks = []
+        for country, limit in self.threshold.items():
+            condition = f'if (keccak256(abi.encodePacked(_payerCountry)) == keccak256(abi.encodePacked("{country}"))) {{\n'
+            condition += f'        if (_amount > {limit}) {{\n'
+            condition += '            return false;\n'
+            condition += '        }\n'
+            condition += '    }\n'
+            threshold_checks.append(condition)
 
-    // Check if the amount exceeds the threshold
-    if (_amount > {self.threshold}) {{
-        return false;
-    }}
-
-"""
+        threshold_logic = "\n".join(threshold_checks)
 
         # Generate the Solidity code for the hardCheck function
         hard_check_function = f"""
@@ -95,8 +94,11 @@ function hardCheck(
         AbstractCompliance newCompliance = AbstractCompliance(nextComplianceContract);
         return newCompliance.hardCheck(_payer, _recipient, _amount, _payerCountry, _recipientCountry, _countriesContract);
     }}
+
+    // Check thresholds for specific countries
     {threshold_logic}
-    return true; // Default behavior if amount is within threshold
+
+    return true; // Default behavior if no threshold is exceeded
 }}
 """
         return hard_check_function

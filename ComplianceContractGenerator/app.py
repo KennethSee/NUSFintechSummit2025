@@ -19,7 +19,7 @@ if generate_button:
     if (country_exclusion_file is None) or (transaction_threshold_file is None):
         st.error('Please upload the required files')
     else:
-        # TO-DO: Generate the code
+        # TO-DO: Modify code generation input
         compliance_contract_name = 'CompliancePlaceholderName'
         compliance_contract_code = ComplianceCodeEngine(compliance_contract_name, ['IR', 'MR'], 1000).generate_contract()
         st.header('Compliance contract solidity code')

@@ -109,7 +109,6 @@ class ThresholdEngine:
         df = self.extract()
         texts = df['sent'].tolist()
         ents = df['ent'].tolist()
-        print(df)
 
         for text, ent in zip(texts, ents):
             threshold_pred = self._predict_sentence(text)

@@ -7,7 +7,7 @@ import argparse  # Importing argparse for command-line argument parsing
 
 # Ensure nltk sentence tokenizer is ready
 nltk.download('punkt')
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_trf")
 
 def extract_sentences_from_pdf(pdf_path):
     # Open the PDF file
@@ -51,14 +51,14 @@ def main(pdf_file_path):
     df = pd.DataFrame(filtered_sent_ent_list)
 
     # Exporting to CSV
-    file_path = 'sentences_with_entities.csv'
+    file_path = './output/sentences_with_entities_threshold.csv'
     df.to_csv(file_path, index=False, encoding='utf-8')
     print(f"Exported results to {file_path}")
 
 if __name__ == "__main__":
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Extract sentences and named entities from a PDF file.")
-    parser.add_argument('-file', type=str, required=True, help="Path to the PDF file")
+    parser.add_argument('--file', type=str, required=True, help="Path to the PDF file")
 
     args = parser.parse_args()  # Parse the command-line arguments
 

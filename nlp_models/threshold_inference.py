@@ -11,17 +11,10 @@ import ast
 import argparse
 
 # Argument parsing
-parser = argparse.ArgumentParser(description="Process sentences and predict blacklisted countries.")
+parser = argparse.ArgumentParser(description="Process sentences and predict thresholds.")
 parser.add_argument('--input_csv', type=str, required=True, help="Path to the input CSV file")
 parser.add_argument('--output_txt', type=str, required=True, help="Path to the output TXT file")
 args = parser.parse_args()
-
-# Open and load the JSON file
-with open('./countrycode.json', 'r') as file:
-    countrycode = json.load(file)
-
-nltk.download('wordnet')
-nltk.download('omw-1.4')  # Optional: for multilingual WordNet support
 
 # Check if GPU is available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -31,7 +24,7 @@ tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 model = BertForSequenceClassification.from_pretrained('bert-base-cased', num_labels=2)
 
 # Load the checkpoint (trained model weights)
-checkpoint_path = './blacklist.pth'
+checkpoint_path = './threshold.pth'
 model.load_state_dict(torch.load(checkpoint_path))
 
 # Move the model to the appropriate device (GPU or CPU)
@@ -71,30 +64,20 @@ try:
 except:
     raise Exception("No value in CSV. End program with no blacklist.")
 
-blacklisted_countries = []
+thresholds = []
 
 for text, ent in zip(texts, ents):
-    blacklist_dict = {}
-    blacklist_pred = predict_sentence(text)
+    threshold_dict = {}
+    threshold_pred = predict_sentence(text)
     ent_list = ast.literal_eval(ent)
-    if blacklist_pred == 1:
-        for e in ent_list:
-            candidate_syn = wn.synsets(e[0])
-            if candidate_syn == []:
-                continue
-            else:
-                for country in countrycode:
-                    country_syn = wn.synsets(country.replace(" ", "_"))
-                    if country_syn == []:
-                        continue
-                    else:
-                        # Compute path similarity (0 to 1, where 1 means identical)
-                        similarity = candidate_syn[0].path_similarity(country_syn[0])
-                        if similarity > 0.8:
-                            blacklisted_countries.append(country)
+    if threshold_pred == 1:
+        for ent in ent_list:
+            if ent[1] == 'MONEY':
+                if any(char.isdigit() for char in ent[0]) and "$" in ent[0]:
+                    thresholds.append(ent[0])
 
 with open(args.output_txt, "w") as file:
-    for item in set(blacklisted_countries):
+    for item in set(thresholds):
         file.write(f"{item}\n")
 
-print(f"Inferred blacklisted countries have been saved to {args.output_txt}")
+print(f"Inferred thresholds have been saved to {args.output_txt}")

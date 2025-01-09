@@ -4,12 +4,12 @@ from engines import ComplianceCodeEngine
 
 st.title('Compliance Contract Generator')
 
-country_exclusion_file = st.file_uploader('Upload country exclusion document', type=['pdf','doc','docx'])
+country_exclusion_file = st.file_uploader('Upload country exclusion document', type=['pdf'])
 if country_exclusion_file is not None:
     # TO-DO: Read and process the file
     st.success('Country exclusino document successfully uploaded!')
 
-transaction_threshold_file = st.file_uploader('Upload transaction threshold document', type=['pdf','doc','docx'])
+transaction_threshold_file = st.file_uploader('Upload transaction threshold document', type=['pdf'])
 if transaction_threshold_file is not None:
     # TO-DO: Read and process the file
     st.success('Transaction threshold document successfully uploaded!')

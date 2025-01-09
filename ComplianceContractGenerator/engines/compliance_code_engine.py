@@ -49,7 +49,7 @@ function softCheck(
 
     // Define excluded countries
     string[] memory excludedCountries = new string[]({len(self.excluded_countries)});
-    {''.join(f'excludedCountries[{i}] = "{country}";\n        ' for i, country in enumerate(self.excluded_countries))}
+    {''.join(f'excludedCountries[{i}] = "{country}";        ' for i, country in enumerate(self.excluded_countries))}
 
     // Check if either country is in the excluded list
     for (uint256 i = 0; i < excludedCountries.length; i++) {{

@@ -69,7 +69,7 @@ if generate_button:
         st.header('Compliance Contract')
         st.error('Please upload the required files')
     else:
-        compliance_contract_name = 'CompliancePlaceholderName'
+        compliance_contract_name = 'ComplianceDemo'
         compliance_contract_code = ComplianceCodeEngine(compliance_contract_name, st.session_state['blacklisted_countries'], st.session_state['thresholds']).generate_contract()
         st.header('Compliance contract solidity code')
         st.code(compliance_contract_code, language='solidity')

@@ -1,6 +1,4 @@
 # NUSFintechSummit2025
 
-Requirement:
-1. spacy - en_core_web_sm
-2. nltk
-3. PyPDF2
+Blacklist Ckpt:
+https://drive.google.com/drive/folders/1lyG_6b007bT1MpdzX6yb7_48QsTOkt4j?usp=drive_link

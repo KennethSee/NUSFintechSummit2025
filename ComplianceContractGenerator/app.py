@@ -34,6 +34,8 @@ if country_exclusion_file is not None:
                 blacklisted_countries = blacklist_engine.predict()
             st.success('Country exclusino document successfully uploaded!')
             st.write(f'Blacklisted countries: {", ".join(blacklisted_countries)}')
+            st.session_state['processed_country_file'] = country_exclusion_file.name
+            st.session_state['blacklisted_countries'] = blacklisted_countries
         except Exception as e:
             st.error(f'Error saving file: {e}')
 
@@ -54,6 +56,7 @@ if transaction_threshold_file is not None:
                 threshold = threshold_engine.predict()
             st.success('Transaction threshold document successfully uploaded!')
             st.session_state['thresholds'][country_code] = threshold
+            st.session_state['processed_threshold_file'] = transaction_threshold_file.name
         except Exception as e:
             st.error(f'Error saving file: {e}')
         
@@ -68,6 +71,6 @@ if generate_button:
         st.error('Please upload the required files')
     else:
         compliance_contract_name = 'CompliancePlaceholderName'
-        compliance_contract_code = ComplianceCodeEngine(compliance_contract_name, blacklisted_countries, st.session_state['thresholds']).generate_contract()
+        compliance_contract_code = ComplianceCodeEngine(compliance_contract_name, st.session_state['blacklisted_countries'], st.session_state['thresholds']).generate_contract()
         st.header('Compliance contract solidity code')
         st.code(compliance_contract_code, language='solidity')

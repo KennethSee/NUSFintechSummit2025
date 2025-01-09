@@ -27,13 +27,13 @@ contract {self.contract_name} is AbstractCompliance {{
 """
         return contract_code
 
-    def _generate_soft_check_func(self):
+    def _generate_hard_check_func(self):
         # Convert Python list of excluded countries to Solidity array
         excluded_countries_array = ', '.join(f'"{country}"' for country in self.excluded_countries)
 
         # Generate the Solidity code for the softCheck function
-        soft_check_function = f"""
-function softCheck(
+        hard_check_function = f"""
+function hardCheck(
     address _payer,
     address _recipient,
     uint256 _amount,
@@ -49,7 +49,9 @@ function softCheck(
 
     // Define excluded countries
     string[] memory excludedCountries = new string[]({len(self.excluded_countries)});
-    {''.join(f'excludedCountries[{i}] = "{country}";        ' for i, country in enumerate(self.excluded_countries))}
+    {'''
+    '''.join(f'excludedCountries[{i}] = "{country}";        ' for i, country in enumerate(self.excluded_countries))}
+
 
     // Check if either country is in the excluded list
     for (uint256 i = 0; i < excludedCountries.length; i++) {{
@@ -64,9 +66,9 @@ function softCheck(
     return true; // Default behavior if not excluded
 }}
 """
-        return soft_check_function
+        return hard_check_function
     
-    def _generate_hard_check_func(self):
+    def _generate_soft_check_func(self):
         # Generate threshold checks for each country
         threshold_checks = []
         for country, limit in self.threshold.items():
@@ -77,11 +79,11 @@ function softCheck(
             condition += '    }\n'
             threshold_checks.append(condition)
 
-        threshold_logic = "\n".join(threshold_checks)
+        threshold_logic = "   \n".join(threshold_checks)
 
         # Generate the Solidity code for the hardCheck function
-        hard_check_function = f"""
-function hardCheck(
+        soft_check_function = f"""
+function softCheck(
     address _payer,
     address _recipient,
     uint256 _amount,
@@ -101,5 +103,5 @@ function hardCheck(
     return true; // Default behavior if no threshold is exceeded
 }}
 """
-        return hard_check_function
+        return soft_check_function
     

@@ -1,6 +1,8 @@
 # NUSFintechSummit2025
 Also to put in bash (assuming environment setup):
+
 conda activate fintech
+
 python -m spacy download en_core_web_sm
 
 Checkpoints:

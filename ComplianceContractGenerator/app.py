@@ -1,5 +1,4 @@
 import streamlit as st
-import subprocess
 
 from engines import ComplianceCodeEngine, BlacklistEngine, ThresholdEngine
 

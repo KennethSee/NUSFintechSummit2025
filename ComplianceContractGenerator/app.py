@@ -1,9 +1,14 @@
 import streamlit as st
+import json
 
 from engines import ComplianceCodeEngine, BlacklistEngine, ThresholdEngine
 
 TEMP_COUNTRY_EXCLUDED_FILE_NAME = 'temp_country_excluded.pdf'
 TEMP_THRESHOLD_FILE_NAME = 'temp_threshold.pdf'
+
+# Load the countries JSON file
+with open('./nlp_models/countrycode.json', 'r') as file:
+    countries_mapping = json.load(file)
 
 if 'thresholds' not in st.session_state:
     st.session_state['thresholds'] = {}
@@ -34,7 +39,7 @@ if country_exclusion_file is not None:
             st.success('Country exclusino document successfully uploaded!')
             st.write(f'Blacklisted countries: {", ".join(blacklisted_countries)}')
             st.session_state['processed_country_file'] = country_exclusion_file.name
-            st.session_state['blacklisted_countries'] = blacklisted_countries
+            st.session_state['blacklisted_countries'] = [countries_mapping[country] for country in blacklisted_countries]
         except Exception as e:
             st.error(f'Error saving file: {e}')
 

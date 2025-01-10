@@ -12,6 +12,7 @@ Follow the step-by-step guide below to try out the code on your local machine:
    ```bash
    conda env create -f ./nlp_models/environment.yml
    conda activate fintech
+   python -m spacy download en_core_web_trf
    ```
 
 2. **Download Pre-trained Checkpoints**  

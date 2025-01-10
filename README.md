@@ -3,8 +3,6 @@
 
 ![Architecture Diagram](./Architecture1.png)
 
-Hello! Welcome to our Hackathon Github!~
-
 ### How to Set Up and Run the Code Locally
 
 Follow the step-by-step guide below to try out the code on your local machine:

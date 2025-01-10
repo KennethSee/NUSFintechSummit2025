@@ -3,11 +3,30 @@
 
 ![Architecture Diagram](./Architecture1.png)
 
-Also to put in bash (assuming environment setup):
+Hello! Welcome to our Hackathon Github!~
 
-conda activate fintech
+### How to Set Up and Run the Code Locally
 
-python -m spacy download en_core_web_trf
+Follow the step-by-step guide below to try out the code on your local machine:
 
-Checkpoints:
-https://drive.google.com/drive/folders/1lyG_6b007bT1MpdzX6yb7_48QsTOkt4j?usp=sharing
+1. **Set Up the Environment**  
+   Use the provided `environment.yml` file to create a Python environment with all necessary dependencies.  
+   ```bash
+   conda env create -f ./nlp_models/environment.yml
+   conda activate fintech
+   ```
+
+2. **Download Pre-trained Checkpoints**  
+   Download the pre-trained BERT-Based Sequence Classifier checkpoints from the following link:  
+   [Download Checkpoints](https://drive.google.com/drive/folders/1lyG_6b007bT1MpdzX6yb7_48QsTOkt4j?usp=sharing)  
+   Ensure that the checkpoints are saved in the correct directory as required by the code.
+   ```bash
+   mv *.pth ./nlp_models
+   ```
+   
+4. **Run the Code**  
+   Once the environment is set up and the checkpoints are downloaded, run the code using the appropriate script:  
+   ```bash
+   streamlit run app.py
+   ```
+   Once the app launches in your browser, select the first option on the local interface.

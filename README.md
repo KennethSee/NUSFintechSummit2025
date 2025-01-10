@@ -1,4 +1,5 @@
 # NUS Fintech Summit 2025: AI-Powered Compliance Rule Mining Agent
+## Group Members: Kenneth See, Xue Wen Tan
 
 ![Architecture Diagram](./Architecture1.png)
 

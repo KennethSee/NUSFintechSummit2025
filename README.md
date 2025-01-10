@@ -4,7 +4,7 @@
 ## Software Architecture
 ![Architecture Diagram](./images/Architecture1.png)
 
-## Product Interface
+## User Interface
 ![Happy Flow](./images/HappyFlow.png)
 ### How to Set Up and Run the Code Locally
 

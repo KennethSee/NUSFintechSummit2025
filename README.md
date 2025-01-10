@@ -1,7 +1,7 @@
 # NUSFintechSummit2025
 
 Welcome to our Fintech Hackathon 2025 Github!
-![Architecture Diagram](./Architecture1.png.png)
+![Architecture Diagram](./Architecture1.png)
 
 Also to put in bash (assuming environment setup):
 

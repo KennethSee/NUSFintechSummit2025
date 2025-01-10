@@ -1,4 +1,8 @@
 # NUSFintechSummit2025
+
+Welcome to our Fintech Hackathon 2025 Github!
+![Architecture Diagram](./Architecture1.png.png)
+
 Also to put in bash (assuming environment setup):
 
 conda activate fintech

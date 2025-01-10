@@ -29,5 +29,10 @@ Follow the step-by-step guide below to try out the code on your local machine:
    Once the environment is set up and the checkpoints are downloaded, run the code using the appropriate script:  
    ```bash
    streamlit run app.py
+   
+   You can now view your Streamlit app in your browser.
+   Local URL: http://localhost:8501
+   Network URL: http://1xx.xx.xxx.xxx:8501
+   External URL: http://1xx.xx.xxx.xxx:8501
    ```
-   Once the app launches in your browser, select the first option on the local interface.
+   Once the app launches, select the first option on the local interface.

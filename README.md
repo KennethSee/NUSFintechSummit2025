@@ -1,7 +1,10 @@
 # NUS Fintech Summit 2025: AI-Powered Compliance Rule Mining Agent
 ## Group Members: Kenneth See, Xue Wen Tan
 
+## Software Architecture
 ![Architecture Diagram](./images/Architecture1.png)
+
+## Product Interface
 ![Happy Flow](./images/HappyFlow.png)
 ### How to Set Up and Run the Code Locally
 

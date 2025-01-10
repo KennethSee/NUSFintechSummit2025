@@ -19,7 +19,7 @@ Follow the step-by-step guide below to try out the code on your local machine:
    ```
 
 2. **Download Pre-trained Checkpoints**  
-   Download the pre-trained BERT-Based Sequence Classifier checkpoints from the following link: [Download Checkpoints](https://drive.google.com/drive/folders/1lyG_6b007bT1MpdzX6yb7_48QsTOkt4j?usp=sharing)  
+   Download the pre-trained BERT-Based Sequence Classifier checkpoints from the following link: [Checkpoints](https://drive.google.com/drive/folders/1lyG_6b007bT1MpdzX6yb7_48QsTOkt4j?usp=sharing)  
    Ensure that the checkpoints are saved in the correct directory as required by the code.
    ```bash
    mv *.pth ./nlp_models

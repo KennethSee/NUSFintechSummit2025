@@ -1,6 +1,5 @@
-# NUSFintechSummit2025
+# NUS Fintech Summit 2025: AI-Powered Compliance Rule Mining Agent
 
-Welcome to our Fintech Hackathon 2025 Github!
 ![Architecture Diagram](./Architecture1.png)
 
 Also to put in bash (assuming environment setup):
